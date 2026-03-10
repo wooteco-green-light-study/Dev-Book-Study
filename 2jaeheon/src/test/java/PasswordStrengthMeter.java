@@ -3,34 +3,20 @@ public class PasswordStrengthMeter {
         if (s == null || s.isBlank()) {
             return PasswordStrength.INVALID;
         }
-
+        int metCounts = 0;
         boolean lengthEnough = s.length() >= 8;
         boolean containsNum = meetsContainingNumberCriteria(s);
         boolean containsUpp = meetsContainingUppercaseCriteria(s);
 
+        if (lengthEnough) metCounts++;
+        if (containsUpp) metCounts++;
+        if (containsNum) metCounts++;
 
-        // 길이만 충분한 경우
-        if (lengthEnough && !containsUpp && !containsNum) {
+        if (metCounts == 1) {
             return PasswordStrength.WEAK;
         }
-        // 숫자만 충분한 경우
-        if (!lengthEnough && !containsUpp && containsNum) {
-            return PasswordStrength.WEAK;
-        }
-        // 대문자만 존재하는 경우
-        if (!lengthEnough && containsUpp && !containsNum) {
-            return PasswordStrength.WEAK;
-        }
-        // 길이가 충분하지 않은 경우
-        if (!lengthEnough) {
-            return PasswordStrength.NORMAL;
-        }
-        // 숫자가 포함되지 않은 경우
-        if (!containsNum) {
-            return PasswordStrength.NORMAL;
-        }
-        // 대문자가 포함되지 않은 경우
-        if (!containsUpp) {
+
+        if (metCounts == 2) {
             return PasswordStrength.NORMAL;
         }
 
