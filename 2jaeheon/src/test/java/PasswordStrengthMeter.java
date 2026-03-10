@@ -8,8 +8,13 @@ public class PasswordStrengthMeter {
         boolean containsNum = meetsContainingNumberCriteria(s);
         boolean containsUpp = meetsContainingUppercaseCriteria(s);
 
+
         // 길이만 충분한 경우
         if (lengthEnough && !containsUpp && !containsNum) {
+            return PasswordStrength.WEAK;
+        }
+        // 숫자만 충분한 경우
+        if (!lengthEnough && !containsUpp && containsNum) {
             return PasswordStrength.WEAK;
         }
         // 길이가 충분하지 않은 경우
