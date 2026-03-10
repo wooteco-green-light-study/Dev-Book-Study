@@ -12,11 +12,11 @@ public class PasswordStrengthMeter {
         if (containsUpp) metCounts++;
         if (containsNum) metCounts++;
 
-        if (metCounts == 1) {
+        if (metCounts <= 1) {
             return PasswordStrength.WEAK;
         }
 
-        if (metCounts == 2) {
+        if (metCounts <= 2) {
             return PasswordStrength.NORMAL;
         }
 
