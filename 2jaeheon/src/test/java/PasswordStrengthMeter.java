@@ -17,6 +17,10 @@ public class PasswordStrengthMeter {
         if (!lengthEnough && !containsUpp && containsNum) {
             return PasswordStrength.WEAK;
         }
+        // 대문자만 존재하는 경우
+        if (!lengthEnough && containsUpp && !containsNum) {
+            return PasswordStrength.WEAK;
+        }
         // 길이가 충분하지 않은 경우
         if (!lengthEnough) {
             return PasswordStrength.NORMAL;
