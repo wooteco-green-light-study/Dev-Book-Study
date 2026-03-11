@@ -1,3 +1,5 @@
+package password;
+
 public class PasswordStrengthMeter {
     public PasswordStrength meter(String s) {
         if (s == null || s.isBlank()) {
