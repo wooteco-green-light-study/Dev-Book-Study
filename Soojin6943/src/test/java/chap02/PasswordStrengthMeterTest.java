@@ -2,6 +2,8 @@ package chap02;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import chap2.PasswordStrength;
+import chap2.PasswordStrengthMeter;
 import org.junit.jupiter.api.Test;
 
 public class PasswordStrengthMeterTest {
@@ -57,5 +59,10 @@ public class PasswordStrengthMeterTest {
     @Test
     void meetsOnlyUpperCriteria_Then_Weak() {
         assertStrength("ABSKE", PasswordStrength.WEAK);
+    }
+
+    @Test
+    void meetsNoCriteria_Then_Weak() {
+        assertStrength("abc", PasswordStrength.WEAK);
     }
 }
