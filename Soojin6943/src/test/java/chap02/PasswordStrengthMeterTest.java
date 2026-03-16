@@ -28,4 +28,14 @@ public class PasswordStrengthMeterTest {
     void meetsOtherCriteria_except_for_number_Then_Normal() {
         assertStrength("ab!@ABqwer", PasswordStrength.NORMAL);
     }
+
+    @Test
+    void nullInput_Then_Invalid() {
+        assertStrength(null, PasswordStrength.INVALID);
+    }
+
+    @Test
+    void emptyInput_Then_Invalid() {
+        assertStrength("", PasswordStrength.INVALID);
+    }
 }
