@@ -1,5 +1,6 @@
 package userRegister;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -10,10 +11,11 @@ import testDouble.StubWeakPasswordChecker;
 public class UserRegisterTest {
     private UserRegister register;
     private StubWeakPasswordChecker stubPasswordChecker = new StubWeakPasswordChecker();
+    private MemoryUserRepository fakeRepository = new MemoryUserRepository();
 
     @BeforeEach
     void setUp() {
-        register = new UserRegister(stubPasswordChecker);
+        register = new UserRegister(stubPasswordChecker, fakeRepository);
     }
 
     @DisplayName("약한 암호면 가입 실패")
@@ -29,5 +31,15 @@ public class UserRegisterTest {
         assertThrows(WeakPasswordException.class, () -> {
             register.register("id", "pw", "email");
         });
+    }
+
+    @DisplayName("같은 ID가 없으면 가입 성공함")
+    @Test
+    void noDupId_RegisterSuccess() {
+        register.register("id", "pw", "email");
+
+        User savedUser = fakeRepository.findById("id");
+        assertEquals("id", savedUser.getId());
+        assertEquals("email", savedUser.getEmail());
     }
 }
