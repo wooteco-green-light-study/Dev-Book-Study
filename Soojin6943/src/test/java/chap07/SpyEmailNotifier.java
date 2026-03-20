@@ -1,5 +1,7 @@
 package chap07;
 
+import chap07.autoDebit.EmailNotifier;
+
 public class SpyEmailNotifier implements EmailNotifier {
     private boolean called;
     private String email;

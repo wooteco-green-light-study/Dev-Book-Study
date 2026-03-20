@@ -1,5 +1,8 @@
 package chap07;
 
+import chap07.autoDebit.DupIdException;
+import chap07.autoDebit.EmailNotifier;
+
 public class UserRegister {
     private WeakPasswordChecker passwordChecker;
     private UserRepository userRepository;

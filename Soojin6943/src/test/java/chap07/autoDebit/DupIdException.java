@@ -1,4 +1,4 @@
-package chap07;
+package chap07.autoDebit;
 
 public class DupIdException extends RuntimeException {
 }
