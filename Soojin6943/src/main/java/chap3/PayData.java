@@ -1,4 +1,4 @@
-package chap03;
+package chap3;
 
 import java.time.LocalDate;
 
